@@ -1,0 +1,3 @@
+demo_job_1:
+  tags: -ci
+script: -echo Hello world
