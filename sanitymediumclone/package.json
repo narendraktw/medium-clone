@@ -13,9 +13,9 @@
   "keywords": [
     "sanity"
   ],
-  "dependencies": {
+  "dependencies": {    
     "@sanity/base": "^2.29.3",
-    "@sanity/core": "^2.29.3",
+    "@sanity/core": "^2.13.1",
     "@sanity/default-layout": "^2.29.3",
     "@sanity/default-login": "^2.29.3",
     "@sanity/desk-tool": "^2.29.3",
@@ -26,6 +26,5 @@
     "react": "^17.0",
     "react-dom": "^17.0",
     "styled-components": "^5.2.0"
-  },
-  "devDependencies": {}
+  }
 }
