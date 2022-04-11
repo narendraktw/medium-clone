@@ -3,8 +3,10 @@ import { sanityClient, urlFor } from '../../sanity'
 import { Post } from '../../typings'
 import PortableText from 'react-portable-text'
 import { useForm, SubmitHandler } from 'react-hook-form'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { getSession, signIn } from 'next-auth/react'
 import Header from '../../components/Header'
+// import {} from 'next-auth/client'
 interface Props {
   post: Post
 }
@@ -18,6 +20,8 @@ interface IFormInput {
 
 function Post({ post }: Props) {
   const [submitted, setSubmitted] = useState(false)
+  const [loading, setLoading] = useState(true)
+
   const {
     register,
     handleSubmit,
@@ -37,6 +41,21 @@ function Post({ post }: Props) {
         console.log(err)
         setSubmitted(false)
       })
+  }
+
+  useEffect(() => {
+    const securePage = async () => {
+      const session = await getSession()
+      if (!session) {
+        signIn()
+      } else {
+        setLoading(false)
+      }
+    }
+    securePage()
+  }, [])
+  if (loading) {
+    return <h2>loading...</h2>
   }
   return (
     <>

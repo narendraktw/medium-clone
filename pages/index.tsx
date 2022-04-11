@@ -1,13 +1,17 @@
+import { useSession } from 'next-auth/react'
 import Head from 'next/head'
-import Image from 'next/image'
 import Link from 'next/link'
 import Header from '../components/Header'
 import { sanityClient, urlFor } from '../sanity'
 import { Post } from '../typings'
+
 interface Props {
   posts: [Post]
 }
 const Home = ({ posts }: Props) => {
+  const { data: session, status } = useSession()
+  const loading = status === 'loading'
+  
   return (
     <>
       <div className="mx-auto max-w-7xl">
